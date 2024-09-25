@@ -1,0 +1,39 @@
+Here are the events defined in the SpokePool contract along with their use cases:
+
+SetXDomainAdmin (address indexed newAdmin)
+
+Use Case: Emitted when a new cross-domain admin is set. It indicates changes in the admin responsible for cross-chain operations.
+SetHubPool (address indexed newHubPool)
+
+Use Case: Emitted when the contract's associated HubPool address is updated. The HubPool serves as the L1 coordination point for bridging tokens.
+EnabledDepositRoute (address indexed originToken, uint256 indexed destinationChainId, bool enabled)
+
+Use Case: Emitted when a deposit route for a specific token and destination chain is enabled or disabled. Used to control which tokens can be deposited and transferred across chains.
+RelayedRootBundle (uint32 indexed rootBundleId, bytes32 indexed relayerRefundRoot, bytes32 indexed slowRelayRoot)
+
+Use Case: Emitted when a root bundle of relay transactions is successfully processed, providing data necessary for relayers and slow relays to be executed.
+ExecutedRelayerRefundRoot (uint256 amountToReturn, uint256 indexed chainId, uint256[] refundAmounts, uint32 indexed rootBundleId, uint32 indexed leafId, address l2TokenAddress, address[] refundAddresses, address caller)
+
+Use Case: Emitted when relayers are refunded after a relay transaction, providing proof that refunds were properly executed.
+TokensBridged (uint256 amountToReturn, uint256 indexed chainId, uint32 indexed leafId, address indexed l2TokenAddress, address caller)
+
+Use Case: Emitted when tokens are bridged from one chain to another, tracking the transfer of funds between different chains.
+EmergencyDeleteRootBundle (uint256 indexed rootBundleId)
+
+Use Case: Emitted when an emergency deletion of a root bundle occurs, typically to address a security or operational issue.
+PausedDeposits (bool isPaused)
+
+Use Case: Emitted when deposits into the contract are paused or unpaused. Useful for security maintenance or upgrades.
+PausedFills (bool isPaused)
+
+Use Case: Emitted when relay fills are paused or unpaused, allowing the contract to control the execution of relayed transactions during operational changes.
+FundsDeposited (uint256 amount, uint256 originChainId, uint256 indexed destinationChainId, int64 relayerFeePct, uint32 indexed depositId, uint32 quoteTimestamp, address originToken, address recipient, address indexed depositor, bytes message)
+
+Use Case: Emitted when a user deposits funds into the contract, tracking the origin chain, destination chain, tokens, and fees involved in the deposit.
+RequestedSpeedUpDeposit (int64 newRelayerFeePct, uint32 indexed depositId, address indexed depositor, address updatedRecipient, bytes updatedMessage, bytes depositorSignature)
+
+Use Case: Emitted when a user requests to speed up their deposit by offering a higher relayer fee. This allows for faster transaction processing by incentivizing relayers.
+FilledRelay (uint256 amount, uint256 totalFilledAmount, uint256 fillAmount, uint256 repaymentChainId, uint256 indexed originChainId, uint256 destinationChainId, int64 relayerFeePct, int64 realizedLpFeePct, uint32 indexed depositId, address destinationToken, address relayer, address indexed depositor, address recipient, bytes message, RelayExecutionInfo updatableRelayData)
+
+Use Case: Emitted when a relay transaction is successfully filled by a relayer, providing detailed information about the relayed amount, fees, and participants involved.
+These events help to track key activities in the SpokePool contract such as deposits, relays, refunds, and administrative changes. ​
