@@ -18,7 +18,7 @@ export default createSchema((p) => ({
   FilledRelay: p.createTable({
     id: p.string(),
     amount: p.bigint(), // Total Amount Transferred
-    totalFilledAmount: p.bigint(), 
+    totalFilledAmount: p.bigint(),
     fillAmount: p.bigint(), // Asset Amount
     repaymentChainId: p.bigint(),
     originChainId: p.bigint(), // Source Chain
@@ -32,5 +32,11 @@ export default createSchema((p) => ({
     recipient: p.string(), // Recipient Address
     message: p.string(),
   }),
-}));
 
+  PriceFeed: p.createTable({
+    id: p.string(),
+    assetSymbol: p.string(),
+    assetPrice: p.bigint(), // Chainlink price value
+    timestamp: p.bigint(), // Timestamp when price was fetched
+  }),
+}));
